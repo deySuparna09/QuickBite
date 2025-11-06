@@ -1,18 +1,22 @@
 import { useEffect, useState } from "react";
 
-const RecipeDetails = ({ meal, onBack }) => {
+const RecipeDetails = ({ meal, onBack, toggleFavorite, favorites }) => {
   const [details, setDetails] = useState(null);
+  const isFav = favorites.some((m) => m.idMeal === meal.idMeal);
 
   useEffect(() => {
     const fetchDetails = async () => {
-      const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`);
+      const res = await fetch(
+        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`
+      );
       const data = await res.json();
       setDetails(data.meals[0]);
     };
     fetchDetails();
   }, [meal]);
 
-  if (!details) return <p className="text-center mt-8">Loading recipe details...</p>;
+  if (!details)
+    return <p className="text-center mt-8">Loading recipe details...</p>;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -22,17 +26,34 @@ const RecipeDetails = ({ meal, onBack }) => {
       >
         ← Back
       </button>
+
       <div className="max-w-3xl mx-auto bg-white shadow rounded-lg p-6">
-        <h2 className="text-2xl font-bold mb-4 text-orange-600">{details.strMeal}</h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-2xl font-bold text-orange-600">
+            {details.strMeal}
+          </h2>
+          <button
+            onClick={() => toggleFavorite(meal)}
+            className={`px-3 py-1 rounded ${
+              isFav
+                ? "bg-red-500 text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
+          >
+            {isFav ? "♥" : "♡"}
+          </button>
+        </div>
+
         <img
           src={details.strMealThumb}
           alt={details.strMeal}
           className="w-full rounded mb-4"
         />
-        <p className="mb-4"><strong>Category:</strong> {details.strCategory}</p>
+        <p className="mb-2"><strong>Category:</strong> {details.strCategory}</p>
         <p className="mb-4"><strong>Area:</strong> {details.strArea}</p>
         <h3 className="font-semibold mb-2">Instructions:</h3>
         <p className="text-gray-700 whitespace-pre-line">{details.strInstructions}</p>
+
         <a
           href={details.strYoutube}
           target="_blank"
