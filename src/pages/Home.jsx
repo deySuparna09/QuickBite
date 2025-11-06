@@ -34,11 +34,18 @@ const Home = ({ onSelectMeal, favorites, toggleFavorite }) => {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch(
-        "https://www.themealdb.com/api/json/v1/1/random.php"
-      );
-      const data = await res.json();
-      setMeals(data.meals);
+    const randomMeals = [];
+
+    // Fetch 3 random meals
+    for (let i = 0; i < 3; i++) {
+      const response = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+      const data = await response.json();
+      if (data.meals && data.meals[0]) {
+        randomMeals.push(data.meals[0]);
+      }
+    }
+
+    setMeals(randomMeals);
     } catch {
       setError("Failed to fetch random recipe.");
     } finally {
