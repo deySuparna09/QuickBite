@@ -1,16 +1,28 @@
-# React + Vite
+# 🍽️ QuickBite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**QuickBite** is a fun and easy-to-use recipe finder app built with **React** and **Tailwind CSS**.  
+It helps users discover new dishes based on the ingredients they have, their mood, or by pure luck!
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- 🔍 **Search by Ingredient** — Type in any ingredient (like “chicken” or “tomato”) and find matching recipes.  
+- 🎲 **Feeling Lucky** — Click the “Feeling Lucky” button to discover 3 random recipes instantly.  
+- 🧘 **Mood Filters** — Choose between *Comfort*, *Quick*, or *Healthy* meal categories.  
+- ❤️ **Favorites** — Save and view your favorite recipes using localStorage (data stays even after refreshing).  
+- 📱 **Responsive Design** — Fully optimized for both desktop and mobile screens.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧠 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend Framework:** React (Vite)
+- **Styling:** Tailwind CSS
+- **State Management:** React Hooks (`useState`, `useEffect`)
+- **API Used:** [TheMealDB API](https://www.themealdb.com/)
+  - Ingredient Search: `https://www.themealdb.com/api/json/v1/1/filter.php?i={ingredient}`
+  - Random Meal: `https://www.themealdb.com/api/json/v1/1/random.php`
+
+---
+
